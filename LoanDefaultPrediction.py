@@ -47,8 +47,13 @@ def learning(data):
     x_lowD = decomp.fit_transform(x_scaled)
     evals['pred_default'] = default_model.predict(x_lowD)
     default_error = (evals.pred_default - evals.default).abs().sum()
-    print "there are %s /%s default in evals data"%(evals.pred_default.sum(), evals.default.sum())
-    print "default_error (%s / %s)"%(default_error, len(x))
+    print "############"
+    print "total cases %s"%len(evals)
+    print "total default %s"%evals.default.sum()
+    print "false default %s"%len(evals[(evals.pred_default==True) & (evals.default==False)])
+    print "miss default %s"%len(evals[(evals.pred_default==False) & (evals.default==True)])
+    print "positive default %s"%len(evals[(evals.pred_default==True) & (evals.default==True)])
+    print "negitive default %s"%len(evals[(evals.pred_default==False) & (evals.default==False)])
     # regression on lost
     evals['pred_lost'] = lrg_model.predict(x_scaled)
     
