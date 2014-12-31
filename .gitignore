@@ -1,4 +1,6 @@
-*.csv
+bike/*.csv
+click-through/*.csv
+loan/*.csv
 *.pdf
 *.py[cod]
 
